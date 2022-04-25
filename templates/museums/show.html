@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div>
+        <p>{{museum.name}}</p>
+            <hr>
+        <p>{{museum.address}}</p>
+        <p><a href="/museums/{{museum.id}}/edit">Edit</a></p>
+        <p><a href="/museums/{{museum.id}}/delete">Delete</a></p>
+    </div>
+{% endblock content %}
