@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form action="/works/{{work.id}}" method="post">
+
+  <div>
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" value="{{work.title}}" required autofocus />
+  </div>
+
+  <div>
+    <label for="artist">Artist:</label>
+    <input type="text" id="artist" name="artist" value="{{work.artist}}" required />
+  </div>
+
+  <div>
+    <label for="year">Year:</label>
+    <input type="number" id="year" name="year" value="{{work.year}}" required />
+  </div>
+
+  <div>
+    <label for="museum">Museum:</label>
+    <select id="museum" name="museum_id">
+      {% for museum in museums %}
+        <option value="{{ museum.id }}"
+            {%if work.museum.id== museum.id%} selected="selected" {% endif %}>{{ museum.name }}
+        </option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <button type="submit">Update Work of Art</button>
+
+</form>
+
+{% endblock %}

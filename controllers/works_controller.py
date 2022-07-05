@@ -2,8 +2,8 @@ from flask import Flask, render_template, request, redirect
 from flask import Blueprint
 from models.museum import Museum
 from models.work import Work
-import repositories.museum_repository as museum_repository
 import repositories.work_repository as work_repository
+import repositories.museum_repository as museum_repository
 
 works_blueprint = Blueprint("works", __name__)
 
@@ -43,9 +43,25 @@ def show(id):
 
 # EDIT
 # GET '/works/<id>/edit'
+@works_blueprint.route("/works/<id>/edit", methods=['GET'])
+def edit_work(id):
+    work=work_repository.select(id)
+    museums=museum_repository.select_all()
+    return render_template('works/edit.html', work = work, museums = museums)
+
 
 # UPDATE
 # PUT '/works/<id>'
+@works_blueprint.route("/works/<id>", methods=['POST'])
+def update_work(id):
+    title = request.form["title"]
+    artist = request.form["artist"]
+    year = request.form["year"]
+    museum_id = request.form["museum_id"]
+    museum = museum_repository.select[museum_id]
+    work = Work(title, artist, year, museum)
+    work_repository.save(work)
+    return redirect('/works')
 
 # DELETE
 # DELETE '/works/<id>'

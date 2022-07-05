@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div>
+        <!-- <img src="https://uploads6.wikiart.org/images/pablo-picasso/the-aficionado-the-torero-1912.jpg!Large.jpg" alt="Synthetic cubism, your guess is as good as mine. A lot of reddish brown, tan, beige colours with darker values outlining sharp corners as through a layered collage."> -->
+        <p>{{work.title}}</p>
+        <hr>
+        <p>{{work.artist}}</p>
+        <p>{{work.year}}</p>
+        <p>{{work.museum.name}}</p>
+        <p><a href="/works/{{work.id}}/edit">Edit</a></p>
+        <p><a href="/works/{{work.id}}/delete">Delete</a></p>
+    </div>
+{% endblock content %}
