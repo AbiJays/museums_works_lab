@@ -3,8 +3,9 @@
 
 
 {% for work in works %}
-  <div>
+  <div class="work">
     <a href="/works/{{work.id}}">{{work.get_details()}}</a>
+    <br>
     <p>
   </div>
 {% endfor %}

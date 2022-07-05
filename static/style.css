@@ -1,3 +1,50 @@
 body{
   font-family: "Helvetica", arial, sans-serif; font-size: 16px;
 }
+
+nav{
+  background-color: rgb(38, 62, 80);
+  margin-bottom: 10px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  /* margin-top: 40px; */
+}
+
+.menu{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style: none;
+  margin-right: 40px;
+}
+
+a {
+  color: antiquewhite;
+}
+
+a:hover {
+  color: rgb(169, 184, 144);
+}
+
+.container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: cadetblue;
+}
+
+.work{
+  border: 1px solid grey;
+  border-radius: 5px;
+  width: 250px;
+  padding: 10px;
+  margin: 5px;
+}
+
+.museum{
+  border: 1px solid grey;
+  border-radius: 5px;
+  width: 250px;
+  padding: 10px;
+  margin: 5px;
+}
