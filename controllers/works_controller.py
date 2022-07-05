@@ -65,4 +65,7 @@ def update_work(id):
 
 # DELETE
 # DELETE '/works/<id>'
-
+@works_blueprint.route("/works/<id>/delete", methods= ['POST'])
+def delete_work(id):
+    work_repository.delete(id)
+    return redirect("/works")
