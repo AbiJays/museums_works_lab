@@ -50,6 +50,12 @@ def select(id):
     return museum
 
 
+def update(museum):
+    sql = "UPDATE museums SET (name, address) = (%s, %s) WHERE id = %s"
+    values = [museum.name, museum.address, museum.id]
+    run_sql(sql, values)
+
+
 def delete(id):
     sql = """
         DELETE FROM museums
@@ -58,9 +64,3 @@ def delete(id):
     values = [id]
     run_sql(sql, values)
 
-
-# view a list of all art works and the museums to which they belong
-
-
-
-# add a new work of art, including the museum to which it belongs

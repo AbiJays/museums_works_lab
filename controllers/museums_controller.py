@@ -43,10 +43,20 @@ def show(id):
 
 # EDIT
 # GET '/museums/<id>/edit'
-# @museums_blueprint.route()
+@museums_blueprint.route("/museums/<id>/edit", methods=['GET'])
+def edit_museum(id):
+    museum = museum_repository.select(id)
+    return render_template('museums/edit.html', museum = museum)
 
 # UPDATE
 # PUT '/museums/<id>'
+@museums_blueprint.route("/museums/<id>",  methods=['POST'])
+def update_museum(id):
+    name = request.form['name']
+    address = request.form['address']
+    museum = Museum(name, address, id)
+    museum_repository.update(museum)
+    return redirect('/museums')
 
 
 
