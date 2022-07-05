@@ -62,10 +62,12 @@ def select(id):
         )
     return work
 
+
 def update(work):
     sql = "UPDATE works SET (title, artist, year, museum_id) = (%s, %s, %s, %s) WHERE id = %s"
     values = [work.title, work.artist, work.year, work.museum.id, work.id]
     run_sql(sql, values)
+
 
 def delete(id):
     sql = "DELETE FROM works WHERE id = %s"

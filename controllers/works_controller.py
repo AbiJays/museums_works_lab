@@ -40,6 +40,7 @@ def show(id):
     work = work_repository.select(id)
     return render_template("works/show.html", work = work)
 
+
 # EDIT
 # GET '/works/<id>/edit'
 @works_blueprint.route("/works/<id>/edit", methods=['GET'])
@@ -58,7 +59,7 @@ def update_work(id):
     artist = request.form["artist"]
     year = request.form["year"]
     museum = museum_repository.select(request.form["museum_id"])
-    work = Work(title, artist, year, museum)
+    work = Work(title, artist, year, museum, id)
     work_repository.update(work)
     return redirect('/works')
 
