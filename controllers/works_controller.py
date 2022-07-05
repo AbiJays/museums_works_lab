@@ -16,27 +16,26 @@ def works():
 
 # NEW
 # GET '/works/new'
-@works_blueprint.route("/works/new", methods = ["GET"])
+@works_blueprint.route("/works/new", methods = ['GET'])
 def new_works():
     museums = museum_repository.select_all()
     return render_template("works/new.html", museums = museums)
 
 # CREATE
 # POST '/works'
-@works_blueprint.route("/works", methods = ["POST"])
+@works_blueprint.route("/works",  methods=['POST'])
 def create_work():
-    title = request.form["title"]
-    artist = request.form["artist"]
-    year = request.form["year"]
-    museum_id = request.form["museum_id"]
-    museum = museum_repository.select[museum_id]
+    title = request.form['title']
+    artist = request.form['artist']
+    year = request.form['year']
+    museum = museum_repository.select(request.form['museum_id'])
     work = Work(title, artist, year, museum)
     work_repository.save(work)
     return redirect('/works')
 
 # SHOW
 # GET '/works/<id>'
-@works_blueprint.route("/works/<id>", methods = ["GET"])
+@works_blueprint.route("/works/<id>", methods = ['GET'])
 def show(id):
     work = work_repository.select(id)
     return render_template("works/show.html", work = work)
@@ -45,8 +44,8 @@ def show(id):
 # GET '/works/<id>/edit'
 @works_blueprint.route("/works/<id>/edit", methods=['GET'])
 def edit_work(id):
-    work=work_repository.select(id)
-    museums=museum_repository.select_all()
+    work = work_repository.select(id)
+    museums = museum_repository.select_all()
     return render_template('works/edit.html', work = work, museums = museums)
 
 
@@ -54,13 +53,13 @@ def edit_work(id):
 # PUT '/works/<id>'
 @works_blueprint.route("/works/<id>", methods=['POST'])
 def update_work(id):
+    print(request.form)
     title = request.form["title"]
     artist = request.form["artist"]
     year = request.form["year"]
-    museum_id = request.form["museum_id"]
-    museum = museum_repository.select[museum_id]
+    museum = museum_repository.select(request.form["museum_id"])
     work = Work(title, artist, year, museum)
-    work_repository.save(work)
+    work_repository.update(work)
     return redirect('/works')
 
 # DELETE

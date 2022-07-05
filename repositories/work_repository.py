@@ -6,23 +6,6 @@ import repositories.museum_repository as museum_repository
 
 # Write your functions here
 
-def save(work):
-    sql = """
-        INSERT INTO works (title, artist, year. museum_id)
-        VALUES (%s, %s, %s, )
-    """
-    values = [
-        work.title, 
-        work.artist, 
-        work.year. 
-        work.museum_id
-        ]
-    results = run_sql(sql, values)
-    id = results[0]['id']
-    work.id = id
-    return work
-
-
 def select_all():
     works = []
 
@@ -39,6 +22,24 @@ def select_all():
             row['id'])
         works.append(work)
     return works
+
+
+def save(work):
+    sql = """
+        INSERT INTO works (title, artist, year, museum_id)
+        VALUES (%s, %s, %s, %s) RETURNING *
+    """
+    values = [
+        work.title, 
+        work.artist, 
+        work.year,
+        work.museum.id
+        ]
+    results = run_sql(sql, values)
+    id = results[0]['id']
+    work.id = id
+    return work
+
 
 def select(id):
     work = None
@@ -60,3 +61,13 @@ def select(id):
             result["id"]
         )
     return work
+
+def update(work):
+    sql = "UPDATE works SET (title, artist, year, museum_id) = (%s, %s, %s, %s) WHERE id = %s"
+    values = [work.title, work.artist, work.year, work.museum.id, work.id]
+    run_sql(sql, values)
+
+def delete(id):
+    sql = "DELETE FROM works WHERE id = %s"
+    values = [id]
+    run_sql(sql, values)

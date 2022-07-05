@@ -22,4 +22,4 @@ class TestWork(unittest.TestCase):
     
     
     def test_work_get_details(self):
-        self.assertEqual("The Aficionado by Pablo Picasso is in Scottish National Gallery of Modern Art", self.work.get_details())   
+        self.assertEqual("The Aficionado by Pablo Picasso is in Scottish National Gallery of Modern Art", self.work.get_details())
